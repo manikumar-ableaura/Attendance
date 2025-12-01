@@ -1,0 +1,656 @@
+/* ==========================================
+   CSS VARIABLES - Design System
+   ========================================== */
+:root {
+    /* Colors */
+    --primary-color: #4A90E2;
+    --primary-hover: #357ABD;
+    --primary-active: #2868A8;
+    --secondary-color: #6C757D;
+    --secondary-hover: #5A6268;
+    --success-color: #28A745;
+    --success-hover: #218838;
+    --danger-color: #DC3545;
+    --bg-color: #F5F7FA;
+    --card-bg: #FFFFFF;
+    --text-primary: #2C3E50;
+    --text-secondary: #6C757D;
+    --border-color: #DEE2E6;
+    --overlay-bg: rgba(0, 0, 0, 0.6);
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+    --font-size-xxl: 32px;
+
+    /* Borders & Shadows */
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --box-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --box-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    /* Transitions */
+    --transition-speed: 0.3s;
+}
+
+/* ==========================================
+   RESET & BASE STYLES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* ==========================================
+   CONTAINER & LAYOUT
+   ========================================== */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-sm);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) 0;
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+.header {
+    text-align: center;
+    padding: var(--spacing-md) 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: white;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--box-shadow-md);
+}
+
+.header h1 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+/* ==========================================
+   CARD COMPONENT
+   ========================================== */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-lg);
+    padding: var(--spacing-lg);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card h2 {
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-base);
+}
+
+/* ==========================================
+   BATCH SELECTION
+   ========================================== */
+.batch-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.btn-batch {
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    min-height: 60px;
+}
+
+/* ==========================================
+   ATTENDANCE VIEW
+   ========================================== */
+.attendance-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    min-height: 44px;
+}
+
+.batch-title {
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Pill-shaped back button */
+.btn-back-pill {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    box-shadow: var(--box-shadow-sm);
+}
+
+.btn-back-pill:hover {
+    background-color: var(--secondary-hover);
+    transform: translateY(-50%) translateX(-2px);
+    box-shadow: var(--box-shadow-md);
+}
+
+.btn-back-pill:active {
+    transform: translateY(-50%) translateX(-1px);
+    box-shadow: var(--box-shadow-sm);
+}
+
+.btn-back-pill:focus {
+    outline: 3px solid rgba(108, 117, 125, 0.4);
+    outline-offset: 2px;
+}
+
+/* ==========================================
+   STUDENT LIST
+   ========================================== */
+.student-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: var(--spacing-xs);
+}
+
+/* Custom scrollbar for webkit browsers */
+.student-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.student-list::-webkit-scrollbar-track {
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
+}
+
+.student-list::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
+}
+
+.student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+}
+
+.student-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--box-shadow-sm);
+}
+
+.student-name {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.attendance-options {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    cursor: pointer;
+    user-select: none;
+}
+
+.radio-group input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.radio-group label {
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    min-height: 44px;
+    min-width: 44px;
+    font-family: var(--font-family);
+    box-shadow: var(--box-shadow-sm);
+}
+
+.btn:focus {
+    outline: 3px solid rgba(74, 144, 226, 0.4);
+    outline-offset: 2px;
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-primary:active {
+    background-color: var(--primary-active);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-hover);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: var(--success-hover);
+}
+
+.btn-success:disabled {
+    background-color: var(--secondary-color);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-submit {
+    width: auto;
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* ==========================================
+   ERROR MESSAGE
+   ========================================== */
+.error-message {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger-color);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--danger-color);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 500;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* ==========================================
+   MODAL
+   ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: var(--spacing-md);
+    opacity: 0;
+    animation: fadeIn var(--transition-speed) ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-lg);
+    padding: var(--spacing-xl);
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: none;
+    border: none;
+    font-size: 36px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-speed) ease;
+}
+
+.modal-close:hover {
+    background-color: var(--bg-color);
+    color: var(--danger-color);
+}
+
+.modal-close:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+.modal-title {
+    font-size: var(--font-size-xl);
+    color: var(--success-color);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    padding-right: var(--spacing-lg);
+}
+
+.modal-body {
+    margin-bottom: var(--spacing-lg);
+}
+
+.summary-info {
+    background: var(--bg-color);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-md);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    color: var(--primary-color);
+}
+
+.summary-label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.summary-value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.modal-content .btn {
+    width: 100%;
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+.hidden {
+    display: none !important;
+}
+
+.form-actions {
+    margin-top: var(--spacing-lg);
+    width: 100%;
+    text-align: center;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN - MOBILE FIRST
+   ========================================== */
+
+/* Tablets and above (768px+) */
+@media (min-width: 768px) {
+    .header h1 {
+        font-size: var(--font-size-xxl);
+    }
+
+    .card {
+        padding: var(--spacing-xl);
+    }
+
+    .batch-buttons {
+        flex-direction: row;
+        gap: var(--spacing-lg);
+    }
+
+    .btn-batch {
+        flex: 1;
+    }
+
+    .student-item {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .container {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* Large screens (1024px+) */
+@media (min-width: 1024px) {
+    .card {
+        max-width: 700px;
+    }
+
+    .student-list {
+        max-height: 500px;
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+    .header {
+        margin-bottom: var(--spacing-sm);
+        padding: var(--spacing-sm);
+    }
+
+    .header h1 {
+        font-size: var(--font-size-lg);
+    }
+
+    .card {
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius);
+    }
+
+    .batch-title {
+        text-align: center;
+        font-size: var(--font-size-lg);
+    }
+
+    .btn-back-pill {
+        width: 34px;
+        height: 34px;
+        font-size: 20px;
+    }
+
+    .student-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .student-name {
+        width: 100%;
+    }
+
+    .attendance-options {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .modal-content {
+        padding: var(--spacing-lg);
+    }
+
+    .modal-title {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    :root {
+        --font-size-base: 14px;
+    }
+
+    .container {
+        padding: var(--spacing-xs);
+    }
+
+    .card {
+        padding: var(--spacing-sm);
+    }
+
+    .student-list {
+        max-height: 50vh;
+    }
+}
+
+/* High contrast mode for accessibility */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid currentColor;
+    }
+
+    .student-item {
+        border-width: 3px;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
